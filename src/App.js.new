@@ -1,0 +1,143 @@
+import React, { useState } from 'react';
+import './App.css';
+import ChatHeader from './components/ChatHeader';
+import ChatMessages from './components/ChatMessages';
+import ChatInput from './components/ChatInput';
+
+function App() {
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      text: "Hello! I'm your FAQ assistant. Ask me anything about our platform!",
+      sender: 'bot',
+      timestamp: new Date().toISOString()
+    }
+  ]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Simplified mock function to simulate backend response
+  const getMockResponse = async (message) => {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    // Mock responses based on keywords to simulate the vector search + LLM pattern
+    const lowerMessage = message.toLowerCase();
+    
+    if (lowerMessage.includes('pricing') || lowerMessage.includes('cost') || lowerMessage.includes('subscription')) {
+      return {
+        reply: "Our platform offers three pricing tiers:\n\n" +
+              "## Basic\n" +
+              "- $10/month\n" +
+              "- 5 users\n" +
+              "- Basic features\n\n" +
+              "## Professional\n" +
+              "- $25/month\n" +
+              "- 20 users\n" +
+              "- Advanced features\n\n" +
+              "## Enterprise\n" +
+              "- Custom pricing\n" +
+              "- Unlimited users\n" +
+              "- All features + dedicated support",
+        sources: [
+          { title: "Pricing Page", url: "#pricing" },
+          { title: "Subscription FAQ", url: "#faq/subscription" }
+        ]
+      };
+    } 
+    else if (lowerMessage.includes('feature') || lowerMessage.includes('capability')) {
+      return {
+        reply: "# Key Features\n\n" +
+              "Our platform provides these powerful capabilities:\n\n" +
+              "- **Real-time collaboration** with team members\n" +
+              "- **Document management** with version control\n" +
+              "- **Automated workflows** to streamline processes\n" +
+              "- **Analytics dashboard** for performance insights\n" +
+              "- **API integration** with your existing tools",
+        sources: [
+          { title: "Features Documentation", url: "#features" }
+        ]
+      };
+    }
+    else if (lowerMessage.includes('how to') || lowerMessage.includes('guide') || lowerMessage.includes('tutorial')) {
+      return {
+        reply: "Here's a quick guide to get started:\n\n" +
+              "1. Create an account at our website\n" +
+              "2. Set up your workspace and invite team members\n" +
+              "3. Import your existing documents or create new ones\n" +
+              "4. Configure your workflow settings\n\n" +
+              "For more detailed instructions, check our documentation site.",
+        sources: [
+          { title: "Getting Started Guide", url: "#getting-started" },
+          { title: "Video Tutorials", url: "#tutorials" }
+        ]
+      };
+    }
+    else {
+      return {
+        reply: "I'm not sure I understand your question. I'm a prototype FAQ assistant that uses vector embeddings from Notion documentation to find relevant information. Behind the scenes, I:\n\n" +
+              "1. Convert your question into a vector using embeddings\n" +
+              "2. Search for similar vectors in our MongoDB database\n" +
+              "3. Retrieve the most relevant documentation chunks\n" +
+              "4. Use Gemini API to generate a helpful response based on the documentation\n\n" +
+              "Try asking about our pricing, features, or how to get started!",
+        sources: []
+      };
+    }
+  };
+
+  const handleSendMessage = async (message) => {
+    if (message.trim() === '') return;
+    
+    // Add user message to UI immediately
+    const userMessage = {
+      id: Date.now(),
+      text: message,
+      sender: 'user',
+      timestamp: new Date().toISOString()
+    };
+    
+    setMessages(prevMessages => [...prevMessages, userMessage]);
+    setIsLoading(true);
+    
+    try {
+      // Get simulated response from the mock function
+      const response = await getMockResponse(message);
+      
+      // Add bot response to UI
+      const botMessage = {
+        id: Date.now() + 1,
+        text: response.reply,
+        sender: 'bot',
+        timestamp: new Date().toISOString(),
+        sources: response.sources
+      };
+      
+      setMessages(prevMessages => [...prevMessages, botMessage]);
+    } catch (err) {
+      console.error('Error:', err);
+      
+      // Add error message
+      const errorMessage = {
+        id: Date.now() + 1,
+        text: 'Sorry, I encountered an error. Please try again.',
+        sender: 'bot',
+        timestamp: new Date().toISOString(),
+        isError: true
+      };
+      
+      setMessages(prevMessages => [...prevMessages, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="App">
+      <ChatHeader />
+      <ChatMessages messages={messages} />
+      <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+    </div>
+  );
+}
+
+export default App;

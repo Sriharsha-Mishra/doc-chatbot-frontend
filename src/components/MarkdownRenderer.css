@@ -1,0 +1,82 @@
+.markdown-content {
+  width: 100%;
+}
+
+.markdown-content pre {
+  background-color: #1e1e2e;
+  padding: 12px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+.markdown-content code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: #e0e0e0;
+}
+
+.markdown-content p {
+  margin: 8px 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.markdown-content a {
+  color: #7289da;
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid #7289da;
+  padding-left: 10px;
+  margin-left: 0;
+  color: #a0a0c0;
+}
+
+.markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid #3a3a4c;
+  padding: 8px;
+  text-align: left;
+}
+
+.markdown-content th {
+  background-color: #2d2d42;
+}
+
+.markdown-content tr:nth-child(even) {
+  background-color: #2a2a3c;
+}

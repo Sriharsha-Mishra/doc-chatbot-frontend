@@ -1,0 +1,29 @@
+.conversation-context {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #3a3a4c;
+}
+
+.new-conversation-btn {
+  background-color: #2d2d42;
+  color: #e0e0e0;
+  border: 1px solid #3a3a4c;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.new-conversation-btn:hover {
+  background-color: #3a3a4c;
+}
+
+.new-conversation-btn svg {
+  width: 14px;
+  height: 14px;
+}

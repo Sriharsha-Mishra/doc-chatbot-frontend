@@ -1,0 +1,13 @@
+.chat-header {
+  background-color: #2d2d42;
+  color: white;
+  padding: 15px;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.chat-title h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
