@@ -32,12 +32,13 @@ function App() {
     try {
       const response = await sendChatMessage(message);
       
+      console.log('Processed response for UI:', response);
+      
       const botMessage = {
         id: Date.now() + 1,
-        text: response.reply,
+        text: response.reply || 'Error: Could not parse response',
         sender: 'bot',
-        timestamp: new Date().toISOString(),
-        sources: response.sources
+        timestamp: new Date().toISOString()
       };
       
       setMessages(prevMessages => [...prevMessages, botMessage]);
