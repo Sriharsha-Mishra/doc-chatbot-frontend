@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import ChatHeader from './components/ChatHeader';
 import ChatMessages from './components/ChatMessages';
@@ -15,6 +15,19 @@ function App() {
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
+  
+  useEffect(() => {
+    if (!darkMode) {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+  }, [darkMode]);
+  
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
     
   const handleSendMessage = async (message) => {
     if (message.trim() === '') return;
@@ -61,7 +74,7 @@ function App() {
 
   return (
     <div className="App">
-      <ChatHeader />
+      <ChatHeader darkMode={darkMode} toggleTheme={toggleTheme} />
       <ChatMessages messages={messages} />
       <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
     </div>

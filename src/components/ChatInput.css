@@ -1,11 +1,19 @@
 .chat-input {
   padding: 15px;
-  background-color: #2a2a3c;
-  border-top: 1px solid #3a3a4c;
+  background-color: var(--dark-bg-secondary);
+  border-top: 1px solid var(--dark-bg-secondary);
   border-radius: 0 0 10px 10px;
-  border-left: 1px solid #3a3a4c;
-  border-right: 1px solid #3a3a4c;
-  border-bottom: 1px solid #3a3a4c;
+  border-left: 1px solid var(--dark-bg-secondary);
+  border-right: 1px solid var(--dark-bg-secondary);
+  border-bottom: 1px solid var(--dark-bg-secondary);
+}
+
+body.light-mode .chat-input {
+  background-color: var(--light-bg-secondary);
+  border-top: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .chat-input form {
@@ -16,23 +24,33 @@
 .chat-input input {
   flex: 1;
   padding: 12px 15px;
-  border: 1px solid #3a3a4c;
+  border: 1px solid #333;
   border-radius: 25px;
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.2s;
-  background-color: #1e1e2e;
-  color: #e0e0e0;
+  transition: border-color 0.2s, background-color 0.3s, color 0.3s;
+  background-color: var(--dark-bg-primary);
+  color: var(--dark-text-primary);
+}
+
+body.light-mode .chat-input input {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
 }
 
 .chat-input input:focus {
-  border-color: #7289da;
+  border-color: var(--dark-input-focus); /* Pink in dark mode */
+}
+
+body.light-mode .chat-input input:focus {
+  border-color: var(--light-input-focus); /* Blue in light mode */
 }
 
 .chat-input button {
   width: 45px;
   height: 45px;
-  background-color: #7289da;
+  background-color: var(--dark-send-button); /* Pink in dark mode */
   color: white;
   border: none;
   border-radius: 50%;
@@ -43,8 +61,16 @@
   transition: background-color 0.2s;
 }
 
+body.light-mode .chat-input button {
+  background-color: var(--light-send-button); /* Blue in light mode */
+}
+
 .chat-input button:hover {
-  background-color: #5e73bc;
+  background-color: #ff4a97; /* Lighter pink for hover in dark mode */
+}
+
+body.light-mode .chat-input button:hover {
+  background-color: #2a4ab3; /* Darker blue for hover in light mode */
 }
 
 .chat-input button:disabled {

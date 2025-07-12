@@ -1,13 +1,47 @@
 .chat-header {
-  background-color: #2d2d42;
+  background-color: var(--dark-bg-secondary);
   color: white;
   padding: 15px;
   border-radius: 10px 10px 0 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
-.chat-title h1 {
+body.light-mode .chat-header {
+  background-color: var(--light-bg-secondary);
+  color: var(--light-text-primary);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.logo-title-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 30px;
+  width: auto;
+  margin-right: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.logo-title-container h1 {
   margin: 0;
   font-size: 1.5rem;
-  text-align: center;
+}
+
+/* Hide old title styling */
+.chat-title {
+  display: none;
 }

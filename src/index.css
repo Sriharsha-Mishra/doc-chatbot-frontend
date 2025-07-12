@@ -1,3 +1,23 @@
+:root {
+  /* Dark mode colors */
+  --dark-bg-primary: #000000;
+  --dark-bg-secondary: #121212;
+  --dark-text-primary: #e0e0e0;
+  --dark-chat-bubble: #333333;
+  --dark-send-button: #e5287c;
+  --dark-user-bubble: #213a8f;
+  --dark-input-focus: #e5287c;
+  
+  /* Light mode colors */
+  --light-bg-primary: #ffffff;
+  --light-bg-secondary: #ffffff;
+  --light-text-primary: #333333;
+  --light-chat-bubble: #f2f5e8;
+  --light-send-button: #213a8f;
+  --light-user-bubble: #e5287c;
+  --light-input-focus: #213a8f;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,10 +25,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1e1e2e;
-  color: #e0e0e0;
   height: 100%;
   overflow: hidden;
+  
+  /* Default to dark mode */
+  background-color: var(--dark-bg-primary);
+  color: var(--dark-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-mode {
+  background-color: var(--light-bg-primary);
+  color: var(--light-text-primary);
 }
 
 html {
